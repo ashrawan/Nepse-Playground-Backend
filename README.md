@@ -1,4 +1,8 @@
 
+ Github Link:
+- [x] Backend: https://github.com/ashrawan/Nepse-Playground-Backend
+- [ ] Frontend: https://github.com/ashrawan/Nepse-Playground
+
 ### Setup Instruction
 1. Install dependencies: ```npm install```  
 2. Create database: **nepse-db**  
@@ -15,7 +19,7 @@
 ## Completed !!!
 
 Start the nepse-playground-UI to visualize data    
-[NEPSE-UI]()
+[https://github.com/ashrawan/Nepse-Playground](https://github.com/ashrawan/Nepse-Playground)
 
 ### API Details
 ### Get Companys: [localhost:3000/api/companys/filter](api/companys/filter)  
