@@ -17,8 +17,7 @@ router.get('/all-company', async (req, res) => {
 
 router.get('/all-stocks', async (req, res) => {
 
-	const date = new Date();
-	console.log('Started Minutes ', date.getMinutes() + 'seconds ' + date.getSeconds());
+	console.log('Started Scraping Stocks ', new Date().toLocaleTimeString());
 	const companies = await Company.findAll();
 	const options = {
 		startDate: req.query?.startDate ? req.query.startDate : '2010-01-01',
@@ -32,10 +31,10 @@ router.get('/all-stocks', async (req, res) => {
 		res.status(400).send('Sorry, cant process dates of more than a year.');
 	} else if (differenceInDays >= 0) {
 		for(let company of companies) {
-			const sd = await ScrapStockData(company, options);
+			await ScrapStockData(company, options);
 		}
-		console.log('Completed Scrapping all Stocks');
-		res.json(true);
+		console.log('Completed Scrapping Stocks', new Date().toLocaleTimeString());
+		res.json('Completed Scrapping Stocks');
 	} else {
 		res.status(400).send('Sorry, cant process this request');
 	}
