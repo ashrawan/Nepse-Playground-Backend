@@ -4,6 +4,8 @@ const Company = require('../../models').Company;
 const { ScrapeCompanyData, ScrapStockData, LoadGraphData } = require('../../services/MainScrapper');
 const format = require('date-fns/format');
 
+const ENABLE_STOCKS_LOAD = process.env.ENABLE_STOCKS_LOAD
+
 router.get('/all-company', async (req, res) => {
 
 	ScrapeCompanyData().then(status => {
@@ -24,11 +26,19 @@ router.get('/all-stocks', async (req, res) => {
 		'stock-symbol': 0,
 		_limit: 8000,
 	  };
-	for(let company of companies) {
-		await ScrapStockData(company, options);
+	var differenceInTime = new Date(options.startDate).getTime() - new Date(options.endDate).getTime();
+	var differenceInDays = ENABLE_STOCKS_LOAD ? 0 : Math.abs(differenceInTime / (1000 * 3600 * 24));
+	if(differenceInDays > 365) {
+		res.status(400).send('Sorry, cant process dates of more than a year.');
+	} else if (differenceInDays >= 0) {
+		for(let company of companies) {
+			const sd = await ScrapStockData(company, options);
+		}
+		console.log('Completed Scrapping all Stocks');
+		res.json(true);
+	} else {
+		res.status(400).send('Sorry, cant process this request');
 	}
-	console.log('Completed Scrapping all Stocks');
-	res.json(true);
 });
 
 router.get('/graphdata/:code/:period', async (req, res) => {
@@ -42,7 +52,6 @@ router.get('/graphdata/:code/:period', async (req, res) => {
 			name: 'Overall NEPSE'
 		};
 		res.json(responseData);
-		res.json(data);
     }, err => {
         res.send(err);
 	});
