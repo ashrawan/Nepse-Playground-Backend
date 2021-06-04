@@ -6,6 +6,7 @@ module.exports = {
 		host: process.env.DB_HOSTNAME || 'localhost',
 		dialect: 'mysql',
 		logging: false,
+		freezeTableName: true,
 		port: process.env.DB_DOCKER_PORT,
 	}
 

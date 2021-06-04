@@ -2,7 +2,7 @@
 const company = require('./company');
 
 module.exports = (sequelize, DataTypes) => {
-    const StockPrice = sequelize.define('StockPrice', {
+    const StockPrice = sequelize.define('stockprice', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     StockPrice.associate = function (models) {
-        StockPrice.belongsTo(models.Company, {
+        StockPrice.belongsTo(models.company, {
             foreignKey: "companyId",
             as: "company",
         })

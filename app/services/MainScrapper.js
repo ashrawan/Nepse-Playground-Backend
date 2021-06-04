@@ -1,8 +1,8 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const Company = require('../models').Company;
-const Sector = require('../models').Sector;
-const StockPrice = require('../models').StockPrice;
+const Company = require('../models').company;
+const Sector = require('../models').sector;
+const StockPrice = require('../models').stockprice;
 
 const companySymbolScraper = require('./scrapper/companyScraper');
 const stockwisePriceScraper = require('./scrapper/stockwisePriceScraper');

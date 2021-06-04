@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const Company = require('../../models').Company;
+const Company = require('../../models').company;
 const { ScrapeCompanyData, ScrapStockData, LoadGraphData } = require('../../services/MainScrapper');
 const format = require('date-fns/format');
 

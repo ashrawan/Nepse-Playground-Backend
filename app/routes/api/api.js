@@ -1,8 +1,8 @@
 
 const router = require('express').Router();
-const Company = require('../../models').Company;
-const Sector = require('../../models').Sector;
-const StockPrice = require('../../models').StockPrice;
+const Company = require('../../models').company;
+const Sector = require('../../models').sector;
+const StockPrice = require('../../models').stockprice;
 var Sequelize = require('sequelize');
 const sequelize = require('../../models').sequelize;
 

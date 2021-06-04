@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const Company = sequelize.define('Company', {
+	const Company = sequelize.define('company', {
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 			timestamps: false,
 		});
 	Company.associate = function (models) {
-		Company.belongsTo(models.Sector, {
+		Company.belongsTo(models.sector, {
 			foreignKey: "sectorId",
 			as: "sector",
 		})
